@@ -1,15 +1,15 @@
-//get task from local storage to GWHDKJFHSKJDHJ ghkwghkwegh kjhdkhj kjhkdK
+//on reload query task from localStorage
 window.addEventListener("load",fillData())
 
 function fillData(){
     try{
-        localStorage["tasks"].split('||')
+        localStorage["tasks"].split('||') // throws error if there are no task
         if (!String(localStorage.length)==0){
-            console.log(String(localStorage["tasks"]))
             document.querySelector('ul').innerHTML=localStorage["tasks"]
             document.querySelector('h3').style.display='block'
             document.querySelector('ul').style.display='block'
             document.querySelector('.removeAllTask').style.display='block'
+           
         }  
     }
     catch(err){
@@ -20,14 +20,12 @@ function fillData(){
 }
 
 
-
-
 document.querySelector('.addTask').addEventListener('click',()=>{
     let task=document.querySelector('.input').value
     let myLi=document.createElement('li')
     document.querySelector('.input').value=''
     if (!task==''){
-    let taskHtml=`<li class='task'>${task}.<br><button class="remove" onclick="removeItem(this)"> Remove</button></li>`
+    let taskHtml=`<li class='task'>${task}.<br><button class="remove" onclick="removeItem(this)">Remove</button></li>`
     myLi.innerHTML=taskHtml
     document.querySelector('ul').appendChild(myLi)
     document.querySelector('.tooltip').style.display='none'
@@ -38,11 +36,13 @@ document.querySelector('.addTask').addEventListener('click',()=>{
         if(localStorage["tasks"]==null){
             localStorage["tasks"]=taskHtml
             console.log("added first item")
-            console.log(localStorage["tasks"])
+            
+            
         }
         else{
             localStorage["tasks"]=localStorage["tasks"]  +taskHtml
             console.log("Added new task")
+            
         }
 
     }
@@ -62,24 +62,42 @@ document.querySelector('.removeAllTask').addEventListener('click',() =>{
 })
 
 function removeItem(node){
-    
+    console.log(" UL HTML start: ",document.querySelector('ul').innerHTML)
     let taskHtml= localStorage["tasks"]
+    
     let taskList= document.createElement('ul')
     taskList.innerHTML=taskHtml
     childs = taskList.childNodes
     let currentTask=(node.parentElement)
-    let currentTaskIndex=1
+    let currentTaskIndex=0
+    let holder=''
     for(let index=0;index<childs.length;index++){
         if (currentTask.textContent==childs[index].textContent){
-            console.log('here: ',childs[index])
-            childs[index].remove()
             currentTaskIndex=index
+        }
+
+        else{
+            holder+=`<li class='task'>${childs[index].textContent.replace('Remove','')}<br><button class="remove" onclick="removeItem(this)">Remove</button></li>` 
         }
         
     }
+    console.log("holder:",holder)
+    if (holder==''){
+        console.log('last Item')
+        localStorage.removeItem("tasks")
+    }
     
-    document.getElementsByClassName('task').item(currentTaskIndex).remove()
+    else{localStorage['tasks']=holder}
+    
+    console.log('currentTaskIndex: ',currentTaskIndex)
+    
+    document.getElementsByClassName('task').item(currentTaskIndex).setAttribute("id","active")
+    let currentElement=document.getElementById(`active`)
+    console.log("element to be deleted: ".currentElement)
+    currentElement.parentNode.removeChild(currentElement);
+    console.log("new localStorage: ",localStorage["tasks"])
 
-    localStorage['tasks']=document.querySelector('ul').innerHTML
+    
+    
 }
 
