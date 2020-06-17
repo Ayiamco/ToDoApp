@@ -61,8 +61,10 @@ document.querySelector('.removeAllTask').addEventListener('click',() =>{
 
 })
 
+
+
 function removeItem(node){
-    console.log(" UL HTML start: ",document.querySelector('ul').innerHTML)
+    
     let taskHtml= localStorage["tasks"]
     
     let taskList= document.createElement('ul')
@@ -83,8 +85,13 @@ function removeItem(node){
     }
     console.log("holder:",holder)
     if (holder==''){
+        document.querySelector('h3').style.display='none'
+        document.querySelector('ul').style.display='none'
+        document.querySelector('.removeAllTask').style.display='none'
+        console.log("Just removed last element.")
         console.log('last Item')
         localStorage.removeItem("tasks")
+        
     }
     
     else{localStorage['tasks']=holder}
@@ -93,9 +100,11 @@ function removeItem(node){
     
     document.getElementsByClassName('task').item(currentTaskIndex).setAttribute("id","active")
     let currentElement=document.getElementById(`active`)
-    console.log("element to be deleted: ".currentElement)
+    
     currentElement.parentNode.removeChild(currentElement);
-    console.log("new localStorage: ",localStorage["tasks"])
+    
+    console.log(document.querySelector("ul").childElementCount)
+    
 
     
     
