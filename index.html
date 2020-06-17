@@ -76,10 +76,31 @@
             border-top: 5px;
             font-size: 10px;
         }
+        .animation{
+           
+            background-color: rgb(236, 159, 159) ;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            
+            animation: rotation 5s infinite linear;
+            margin-top: 40px;
+        }
+
+        @keyframes rotation {
+            from {
+              transform: rotate(0deg);
+            }
+            to {
+              transform: rotate(359deg);
+            }
+          }
+        
         
     </style>
 </head>
 <body>
+    <div class="animation"></div>
     <h1>TO DO APP</h1>
     <main>
         
