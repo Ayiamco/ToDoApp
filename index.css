@@ -1,0 +1,92 @@
+body{
+    background: linear-gradient(skyblue, pink);
+    height: 100vh;
+
+}
+main{
+    position: relative;
+    text-align: rigth;
+    width: 50%;
+    margin: auto;
+}
+.input{
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.addTask{
+    background-color: green;
+    color: white;
+    font-family: cursive;
+    margin-top: 10px;
+}
+.tooltip{
+    display: none;
+    font-size: 12px;
+    color: red;
+    top:5px;
+    margin-top: 0px;
+}
+.removeAllTask{
+    background-color: rgb(182, 40, 40);
+    height: 40px;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    font-family: cursive;
+    display: none;
+}
+
+h3{
+    text-align: center;
+    display: none;
+    font-family: 'Courier New', Courier, monospace;
+}
+.ul{
+
+    text-align: right;
+    font-family: 'Courier New', Courier, monospace;
+}
+h1{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+li{
+    margin-top: 10px;
+    list-style:  none;
+}
+
+
+.remove{
+    text-decoration: none;
+    color: white;
+    background-color:  rgb(233, 103, 103);
+    border: 1px white solid;
+    border-radius: 20px;
+    padding: 4px;
+    border-top: 5px;
+    font-size: 10px;
+}
+.animation{
+   
+    background-color: rgb(236, 159, 159) ;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    opacity: 0.5;
+    transition: ease 0.5s all;
+    animation: rotation 5s infinite linear;
+    margin-top: 40px;
+    margin-left: 20%;
+}
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
